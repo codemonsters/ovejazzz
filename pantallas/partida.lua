@@ -1,4 +1,5 @@
 require "objetos/tronco"
+require "objetos/aguila"
 
 local partida = {
     update = function(dt)
@@ -23,11 +24,26 @@ local partida = {
         if tiempo_partida >= tiempo_creacion_siguiente_obstaculo then
             table.insert(obstaculos, nuevo_tronco(164, 58))
             tiempo_creacion_siguiente_obstaculo = tiempo_partida + rnd(tiempo_minimo_entre_obstaculos, tiempo_maximo_entre_obstaculos)
+            if rnd(0, 1) < 0.2 then
+                if rnd(0, 1) < 0.5 then
+                    tiempo_creacion_siguiente_aguila = tiempo_creacion_siguiente_obstaculo - 0.3
+                else
+                    tiempo_creacion_siguiente_aguila = tiempo_creacion_siguiente_obstaculo + 0.3
+                end
+            end
         end
+
+        if tiempo_partida >= tiempo_creacion_siguiente_aguila then
+            tiempo_creacion_siguiente_aguila = tiempo_partida + 999
+            table.insert(obstaculos, nuevo_aguila(164,35))
+        end
+
 
         local indices_obstaculos_a_eliminar = {}    -- lista para guardar los índices de los obstáculos que se salen por la izquierda de la pantalla (los eliminaremos posteriormente)
         -- actualizamos los obstáculos (los movemos, comprobamos colisiones y marcamos los que se deberían eliminar)
         for i, obstaculo in ipairs(obstaculos) do
+            obstaculo:update(dt)
+
             obstaculo.x = obstaculo.x - heroe.velocidad_x * dt
             -- si el obstáculos se sale por la izquierda, actualizamos los puntos e insertamos su índice en la lista indices_obstaculos_a_eliminar
             if obstaculo.x < -10 then

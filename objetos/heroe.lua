@@ -2,8 +2,8 @@ local heroe = {
     -- inicio configuración
     x = 16,         -- x del hitbox
     y = 60,         -- y del hitbox
-    ancho = 16,     -- ancho del hitbox
-    alto = 13,      -- alto del hitbox
+    ancho = 15,     -- ancho del hitbox
+    alto = 10,      -- alto del hitbox
     desplz_img_x = -11,
     desplz_img_y = -50,
     y_suelo = 60,   -- altura del suelo (posición vertical a partir de la cual ya no estamos saltando)

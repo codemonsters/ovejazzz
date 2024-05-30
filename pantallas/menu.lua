@@ -23,6 +23,7 @@ local menu = {
             tiempo_partida = 0      -- el tiempo que está durante la partida actual (inicialmente es cero y el código automáticamente actualiza este valor)
             distancia_recorrida = 0 -- la distancia que el héroe lleva recorrida (en píxeles)
             tiempo_creacion_siguiente_obstaculo = 0   -- siguiente momento en el que se creará un obstáculo
+            tiempo_creacion_siguiente_aguila = 999   -- siguiente momento en el que se creará la siguiente águila
             obstaculos = {}    -- inicialmente no hay obstáculos creados (se crearán automáticamente cada cierto tiempo)
             tiempo_minimo_entre_obstaculos = 0.7 -- en segundos
             tiempo_maximo_entre_obstaculos = 1.5 -- en segundos
